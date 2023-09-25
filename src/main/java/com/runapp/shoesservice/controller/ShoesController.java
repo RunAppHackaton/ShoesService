@@ -74,9 +74,9 @@ public class ShoesController {
     @ApiResponse(responseCode = "400", description = "Invalid input")
     public ResponseEntity<ShoesResponse> createShoes(@Parameter(description = "Shoes data", required = true)
                                                      @RequestBody ShoesRequest shoesRequest) {
-        ShoesModel shoesModel = shoesDtoMapper.toModel(shoesRequest); // Преобразование в модель
-        ShoesModel createdShoes = shoesService.createShoes(shoesModel); // Используем метод createShoes с моделью
-        ShoesResponse createdShoesResponse = shoesDtoMapper.toResponse(createdShoes); // Преобразование в DTO
+        ShoesModel shoesModel = shoesDtoMapper.toModel(shoesRequest);
+        ShoesModel createdShoes = shoesService.createShoes(shoesModel);
+        ShoesResponse createdShoesResponse = shoesDtoMapper.toResponse(createdShoes);
         return new ResponseEntity<>(createdShoesResponse, HttpStatus.CREATED);
     }
 

@@ -15,9 +15,9 @@ public class ShoesDtoMapper {
         shoesModel.setModel(shoesRequest.getModel());
         shoesModel.setSize(shoesRequest.getSize());
         shoesModel.setMileage(shoesRequest.getMileage());
-        shoesModel.setCondition(ConditionShoesEnum.NEW); // По умолчанию
+        shoesModel.setCondition(ConditionShoesEnum.NEW);
         shoesModel.setUserId(shoesRequest.getUserId());
-        shoesModel.setShoesImageUrl("DEFAULT"); // По умолчанию
+        shoesModel.setShoesImageUrl("DEFAULT");
         return shoesModel;
     }
 

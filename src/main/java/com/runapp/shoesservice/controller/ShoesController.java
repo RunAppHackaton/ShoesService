@@ -9,6 +9,7 @@ import com.runapp.shoesservice.dto.shoesDtoMapper.ShoesDtoMapper;
 import com.runapp.shoesservice.feignClient.StorageServiceClient;
 import com.runapp.shoesservice.model.ShoesModel;
 import com.runapp.shoesservice.service.ShoesService;
+import com.runapp.shoesservice.utill.ConditionShoesEnum;
 import feign.FeignException;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -149,5 +150,33 @@ public class ShoesController {
         } catch (FeignException.InternalServerError e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new DeleteResponse("the image does not exist or the data was transferred incorrectly"));
         }
+    }
+
+    @PutMapping("/update-mileage/{id}/{additionalKilometers}")
+    @Operation(summary = "Update shoes mileage", description = "Update the mileage of shoes by providing the shoes ID and additional kilometers")
+    @ApiResponse(responseCode = "200", description = "Mileage updated successfully", content = @io.swagger.v3.oas.annotations.media.Content)
+    @ApiResponse(responseCode = "404", description = "Shoes not found")
+    public ResponseEntity<Object> updateMileage(
+            @Parameter(description = "Shoes ID", required = true) @PathVariable Long id,
+            @Parameter(description = "Additional kilometers", required = true) @PathVariable int additionalKilometers) {
+        ShoesModel shoesModel = shoesService.getShoesById(id).orElse(null);
+
+        if (shoesModel == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Shoes with id " + id + " not found");
+        }
+
+        int updatedMileage = shoesModel.getMileage() + additionalKilometers;
+        shoesModel.setMileage(updatedMileage);
+
+        if (updatedMileage < 150) {
+            shoesModel.setCondition(ConditionShoesEnum.USED);
+        } else if (updatedMileage < 400) {
+            shoesModel.setCondition(ConditionShoesEnum.WORN_OUT);
+        } else if (updatedMileage < 800) {
+            shoesModel.setCondition(ConditionShoesEnum.DAMAGED);
+        }
+        shoesService.updateShoes(id, shoesModel);
+
+        return ResponseEntity.ok().build();
     }
 }

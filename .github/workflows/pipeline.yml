@@ -60,7 +60,7 @@ jobs:
           docker buildx create --use
           docker buildx build \
             --file ./Dockerfile \
-            --tag ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_NAME_CONTAINER }}:latest \
+            --tag ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_NAME_CONTAINER }}:${{ secrets.DOCKER_CONTAINER_TAG }} \
             --push .
 
   deploy_to_GoogleCloud:
@@ -69,6 +69,9 @@ jobs:
       id-token: 'write'
 
     runs-on: ubuntu-latest
+
+    needs: [ build, test, deploy_to_DockerHub ]
+
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -91,7 +94,7 @@ jobs:
 
       - name: Build and push container to Google Artifact Registry
         run: |-
-          docker build -t "${{ secrets.GCP_REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_APP }}/${{ secrets.GCP_APP }}:${{ github.sha }}" ./app
+          docker build -t "${{ secrets.GCP_REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_APP }}/${{ secrets.GCP_APP }}:${{ github.sha }}" ./Dockerfile
           docker push "${{ secrets.GCP_REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_APP }}/${{ secrets.GCP_APP }}:${{ github.sha }}"
 
       - name: Render templatised config manifests

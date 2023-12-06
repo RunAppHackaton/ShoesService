@@ -1,0 +1,14 @@
+/Users/denpool/IdeaProjects/Run_App/Backend/Shoes-Service/src/main/java/com/runapp/shoesservice/model/ShoesModel.java
+/Users/denpool/IdeaProjects/Run_App/Backend/Shoes-Service/src/main/java/com/runapp/shoesservice/service/ShoesService.java
+/Users/denpool/IdeaProjects/Run_App/Backend/Shoes-Service/src/main/java/com/runapp/shoesservice/controller/ShoesController.java
+/Users/denpool/IdeaProjects/Run_App/Backend/Shoes-Service/src/main/java/com/runapp/shoesservice/dto/response/DeleteResponse.java
+/Users/denpool/IdeaProjects/Run_App/Backend/Shoes-Service/src/main/java/com/runapp/shoesservice/dto/shoesDtoMapper/ShoesDtoMapper.java
+/Users/denpool/IdeaProjects/Run_App/Backend/Shoes-Service/src/main/java/com/runapp/shoesservice/ShoesServiceApplication.java
+/Users/denpool/IdeaProjects/Run_App/Backend/Shoes-Service/src/main/java/com/runapp/shoesservice/utill/ConditionShoesEnum.java
+/Users/denpool/IdeaProjects/Run_App/Backend/Shoes-Service/src/main/java/com/runapp/shoesservice/dto/request/DeleteStorageRequest.java
+/Users/denpool/IdeaProjects/Run_App/Backend/Shoes-Service/src/main/java/com/runapp/shoesservice/repository/ShoesRepository.java
+/Users/denpool/IdeaProjects/Run_App/Backend/Shoes-Service/src/main/java/com/runapp/shoesservice/dto/response/ShoesResponse.java
+/Users/denpool/IdeaProjects/Run_App/Backend/Shoes-Service/src/main/java/com/runapp/shoesservice/dto/response/StorageServiceResponse.java
+/Users/denpool/IdeaProjects/Run_App/Backend/Shoes-Service/src/main/java/com/runapp/shoesservice/dto/request/ShoesRequest.java
+/Users/denpool/IdeaProjects/Run_App/Backend/Shoes-Service/src/main/java/com/runapp/shoesservice/dto/request/ShoesDeleteRequest.java
+/Users/denpool/IdeaProjects/Run_App/Backend/Shoes-Service/src/main/java/com/runapp/shoesservice/feignClient/StorageServiceClient.java

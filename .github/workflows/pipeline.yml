@@ -70,7 +70,7 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    needs: [ build, test, deploy_to_DockerHub ]
+#    needs: [ build, test, deploy_to_DockerHub ]
 
     steps:
       - name: Checkout

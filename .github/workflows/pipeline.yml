@@ -6,62 +6,62 @@ on:
       - main
 
 jobs:
-#  build:
-#    runs-on: ubuntu-latest
-#
-#    steps:
-#      - name: Checkout Repository
-#        uses: actions/checkout@v2
-#
-#      - name: Set up JDK 20
-#        uses: actions/setup-java@v2
-#        with:
-#          distribution: 'adopt'
-#          java-version: '20'
-#
-#      - name: Build with Maven
-#        run: mvn -B clean install
-#
-#  test:
-#    runs-on: ubuntu-latest
-#
-#    needs: build
-#
-#    steps:
-#      - name: Checkout Repository
-#        uses: actions/checkout@v2
-#
-#      - name: Set up JDK 20
-#        uses: actions/setup-java@v2
-#        with:
-#          distribution: 'adopt'
-#          java-version: '20'
-#
-#      - name: Run Tests with Maven
-#        run: mvn test
-#
-#  deploy_to_DockerHub:
-#    runs-on: ubuntu-latest
-#
-#    needs: [ build, test ]
-#
-#    steps:
-#      - name: Checkout Repository
-#        uses: actions/checkout@v2
-#
-#      - name: Set up Docker Buildx
-#        uses: docker/setup-buildx-action@v1
-#
-#      - name: Login to Docker Hub
-#        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-#
-#      - name: Build Docker image
-#        run: |
-#          docker buildx create --use
-#          docker buildx build \
-#            --file ./Dockerfile \
-#            --tag ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_NAME_CONTAINER }}:${{ secrets.DOCKER_CONTAINER_TAG }} \
-#            --push .
+  #  build:
+  #    runs-on: ubuntu-latest
+  #
+  #    steps:
+  #      - name: Checkout Repository
+  #        uses: actions/checkout@v2
+  #
+  #      - name: Set up JDK 20
+  #        uses: actions/setup-java@v2
+  #        with:
+  #          distribution: 'adopt'
+  #          java-version: '20'
+  #
+  #      - name: Build with Maven
+  #        run: mvn -B clean install
+  #
+  #  test:
+  #    runs-on: ubuntu-latest
+  #
+  #    needs: build
+  #
+  #    steps:
+  #      - name: Checkout Repository
+  #        uses: actions/checkout@v2
+  #
+  #      - name: Set up JDK 20
+  #        uses: actions/setup-java@v2
+  #        with:
+  #          distribution: 'adopt'
+  #          java-version: '20'
+  #
+  #      - name: Run Tests with Maven
+  #        run: mvn test
+  #
+  #  deploy_to_DockerHub:
+  #    runs-on: ubuntu-latest
+  #
+  #    needs: [ build, test ]
+  #
+  #    steps:
+  #      - name: Checkout Repository
+  #        uses: actions/checkout@v2
+  #
+  #      - name: Set up Docker Buildx
+  #        uses: docker/setup-buildx-action@v1
+  #
+  #      - name: Login to Docker Hub
+  #        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+  #
+  #      - name: Build Docker image
+  #        run: |
+  #          docker buildx create --use
+  #          docker buildx build \
+  #            --file ./Dockerfile \
+  #            --tag ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_NAME_CONTAINER }}:${{ secrets.DOCKER_CONTAINER_TAG }} \
+  #            --push .
 
   deploy_to_GoogleCloud:
     permissions:
@@ -70,11 +70,12 @@ jobs:
 
     runs-on: ubuntu-latest
 
-#    needs: [ build, test, deploy_to_DockerHub ]
+    #    needs: [ build, test, deploy_to_DockerHub ]
 
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+
 
       - name: Google auth
         id: auth
@@ -83,36 +84,25 @@ jobs:
           workload_identity_provider: projects/1098900765825/locations/global/workloadIdentityPools/github-pool/providers/github
           service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
 
+
       - name: Set up Cloud SDK
         uses: google-github-actions/setup-gcloud@v1
         with:
           project_id: ${{ secrets.GCP_PROJECT_ID }}
 
-      - name: Docker auth in Google Artifact
+      - name: Docker auth in Google
         run: |-
           gcloud auth configure-docker ${{ secrets.GCP_REGION }}-docker.pkg.dev
 
+
       - name: Build and push container to Google Artifact Registry
         run: |-
-          echo "${{ secrets.GCP_REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_APP }}/${{ secrets.GCP_APP }}:${{ github.sha }}" \
+          echo "${{ secrets.GCP_REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_APP }}/${{ secrets.GCP_ }}:${{ github.sha }}" \
           docker build . -t "${{ secrets.GCP_REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_APP }}/${{ secrets.GCP_APP }}:${{ github.sha }}" \
-          docker push "${{ secrets.GCP_REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_APP }}/${{ secrets.GCP_APP }}:${{ github.sha }}"
+          docker push "${{ secrets.GCP_REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_APP }}/${{ secrets.DOCKER_NAME_CONTAINER }}:${{ github.sha }}"
 
-      - name: Render templatised config manifests
-        run: |-
-          export PROJECT_ID="${{ secrets.GCP_PROJECT_ID }}"
-          export REGION="${{ secrets.GCP_REGION }}"
-          for template in $(ls config/*.template.yaml); do envsubst < ${template} > ${template%%.*}.yaml ; done
 
-      - name: Create Cloud Deploy delivery pipeline
-        run: |-
-          gcloud deploy apply --file config/clouddeploy.yaml --region ${{ secrets.GCP_REGION }}
-
-      - name: Create release name
-        run: |-
-          echo "RELEASE_NAME=${{ secrets.GCP_APP }}-${GITHUB_SHA::7}-${GITHUB_RUN_NUMBER}" >> ${GITHUB_ENV}
-
-      - name: Create Cloud Deploy release
+      - name: Deploy to Cloud Run
         id: release
         run: |-
           gcloud run deploy ${{ secrets.GCP_SERVICE }} \

@@ -107,8 +107,14 @@ jobs:
              --port=2222 \
              --add-cloudsql-instances=runapp-407111:europe-central2:run-app-db \
              --service-account=denys-to-connect-db@runapp-407111.iam.gserviceaccount.com \
-             --update-env-vars=SHOES_SERVICE_SERVER_PORT=${{ secrets.SHOES_SERVICE_SERVER_PORT }} \
-             --update-env-vars=DATABASE_USERNAME=sos \
+             --set-env-vars=SHOES_SERVICE_SERVER_PORT=${{ secrets.SHOES_SERVICE_SERVER_PORT }} \
+             --set-env-vars=ZIPKIN_URL=${{ secrets.ZIPKIN_URL }} \
+             --set-env-vars=DISCOVERY_SERVICE_URL=${{ secrets.DISCOVERY_SERVICE_URL }} \
+             --set-env-vars=DATABASE_NAME=${{ secrets.DATABASE_NAME }} \
+             --set-env-vars=DATABASE_USERNAME=${{ secrets.DATABASE_USERNAME }} \
+             --set-env-vars=DATABASE_PASSWORD=${{ secrets.DATABASE_PASSWORD }} \
+             --set-env-vars=SQL_INSTANCE_NAME= ${{ secrets.GCP_SQL_ACCOUNT_SERVICE }} \
+             --set-env-vars=STORAGE_SERVICE_URL=${{ secrets.STORAGE_SERVICE_URL }} \
              --allow-unauthenticated
 #          gcloud run deploy shoes-service \
 #            --image=${{ secrets.GCP_REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_APP }}/${{ secrets.DOCKER_NAME_CONTAINER }}:${{ github.sha }} \

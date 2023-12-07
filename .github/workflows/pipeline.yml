@@ -7,68 +7,68 @@ on:
 
 jobs:
 
-  Build:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
-
-      - name: Set up JDK 20
-        uses: actions/setup-java@v2
-        with:
-          distribution: 'adopt'
-          java-version: '20'
-
-      - name: Build with Maven
-        run: mvn -B clean install
-
-
-  Tests:
-    runs-on: ubuntu-latest
-    needs: [Build]
-
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
-
-      - name: Set up JDK 20
-        uses: actions/setup-java@v2
-        with:
-          distribution: 'adopt'
-          java-version: '20'
-
-      - name: Run Tests with Maven
-        run: mvn test
-
-
-  Deploy_to_DockerHub:
-    runs-on: ubuntu-latest
-    needs: [ Build, Tests ]
-
-    steps:
-
-      - name: Checkout Repository
-        uses: actions/checkout@v2
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
-
-      - name: Login to Docker Hub
-        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-
-      - name: Build Docker image
-        run: |
-          docker buildx create --use
-          docker buildx build \
-          --file ./Dockerfile \
-          --tag ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_NAME_CONTAINER }}:${{ secrets.DOCKER_CONTAINER_TAG }} \
-          --push .
+#  Build:
+#    runs-on: ubuntu-latest
+#
+#    steps:
+#      - name: Checkout Repository
+#        uses: actions/checkout@v2
+#
+#      - name: Set up JDK 20
+#        uses: actions/setup-java@v2
+#        with:
+#          distribution: 'adopt'
+#          java-version: '20'
+#
+#      - name: Build with Maven
+#        run: mvn -B clean install
+#
+#
+#  Tests:
+#    runs-on: ubuntu-latest
+#    needs: [Build]
+#
+#    steps:
+#      - name: Checkout Repository
+#        uses: actions/checkout@v2
+#
+#      - name: Set up JDK 20
+#        uses: actions/setup-java@v2
+#        with:
+#          distribution: 'adopt'
+#          java-version: '20'
+#
+#      - name: Run Tests with Maven
+#        run: mvn test
+#
+#
+#  Deploy_to_DockerHub:
+#    runs-on: ubuntu-latest
+#    needs: [ Build, Tests ]
+#
+#    steps:
+#
+#      - name: Checkout Repository
+#        uses: actions/checkout@v2
+#
+#      - name: Set up Docker Buildx
+#        uses: docker/setup-buildx-action@v1
+#
+#      - name: Login to Docker Hub
+#        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+#
+#      - name: Build Docker image
+#        run: |
+#          docker buildx create --use
+#          docker buildx build \
+#          --file ./Dockerfile \
+#          --tag ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_NAME_CONTAINER }}:${{ secrets.DOCKER_CONTAINER_TAG }} \
+#          --push .
 
 
   Deploy_to_Google_Cloud:
     runs-on: ubuntu-latest
-    needs: [ Build, Tests, Deploy_to_DockerHub ]
+#    needs: [ Build, Tests, Deploy_to_DockerHub ]
     permissions:
       contents: 'read'
       id-token: 'write'
@@ -82,7 +82,7 @@ jobs:
         uses: google-github-actions/auth@v1
         with:
           token_format: 'access_token'
-          workload_identity_provider: projects/1098900765825/locations/global/workloadIdentityPools/github-pool/providers/github
+          workload_identity_provider: ${{ GCP_PROVIDER }}
           service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
 
       - name: Docker auth in Google
@@ -99,17 +99,37 @@ jobs:
 
       - name: Deploy to Cloud Run
         id: deploy
-        run: |
-          gcloud run deploy shoes-service \
-            --image=${{ secrets.GCP_REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_APP }}/${{ secrets.DOCKER_NAME_CONTAINER }}:${{ github.sha }} \
-            --region=${{ secrets.GCP_REGION }} \
-            --project=${{ secrets.GCP_PROJECT_ID }} \
-            --port=${{ secrets.SERVICE_PORT }} \
-            --add-cloudsql-instances=${{ secrets.GCP_SQL_INSTANCE }} \
-            --service-account=${{ secrets.GCP_SQL_ACCOUNT_SERVICE }} \
-            --allow-unauthenticated
-
-      - name: Report Cloud Deploy release
         run: |-
-          echo "Created release ${{ steps.release.outputs.name }} "
-          echo "Release link ${{ steps.release.outputs.link }} "
+           gcloud run deploy shoes-service \
+             --image=docker.io/denpool/shoes-service:0.0.3 \
+             --region=europe-central2 \
+             --project=runapp-407111 \
+             --port=2222 \
+             --add-cloudsql-instances=runapp-407111:europe-central2:run-app-db \
+             --service-account=denys-to-connect-db@runapp-407111.iam.gserviceaccount.com \
+             --update-env-vars=SHOES_SERVICE_SERVER_PORT=${{ secrets.SHOES_SERVICE_SERVER_PORT }}
+             --allow-unauthenticated
+#          gcloud run deploy shoes-service \
+#            --image=${{ secrets.GCP_REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_APP }}/${{ secrets.DOCKER_NAME_CONTAINER }}:${{ github.sha }} \
+#            --region=${{ secrets.GCP_REGION }} \
+#            --project=${{ secrets.GCP_PROJECT_ID }} \
+#            --port=${{ secrets.SERVICE_PORT }} \
+#            --add-cloudsql-instances=${{ secrets.GCP_SQL_INSTANCE }} \
+#            --service-account=${{ secrets.GCP_SQL_ACCOUNT_SERVICE }} \
+#            --allow-unauthenticated
+
+      - name: Link to your service
+        run: |-
+          export SERVICE_URL=$(gcloud run services describe shoes-service --format 'value(status.url)' --region=europe-central2)
+          echo "Service link $SERVICE_URL"
+
+
+#  gcloud run deploy shoes-service \
+#  --image=docker.io/denpool/shoes-service:0.0.3 \
+#  --region=europe-central2 \
+#  --project=runapp-407111 \
+#  --port=2222 \
+#  --add-cloudsql-instances=runapp-407111:europe-central2:run-app-db \
+#  --service-account=denys-to-connect-db@runapp-407111.iam.gserviceaccount.com \
+#  --update-env-vars=SHOES_SERVICE_SERVER_PORT=${{ secrets.SHOES_SERVICE_SERVER_PORT }}
+#  --allow-unauthenticated

@@ -97,7 +97,7 @@ jobs:
 
       - name: Build and push container to Google Artifact Registry
         run: |-
-          docker build -t "${{ secrets.GCP_REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_APP }}/${{ secrets.GCP_APP }}:${{ github.sha }}" . \
+          docker build -t "${{ secrets.GCP_REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_APP }}/${{ secrets.GCP_APP }}:${{ github.sha }}" ./Dockerfile \
           docker push "${{ secrets.GCP_REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_APP }}/${{ secrets.DOCKER_NAME_CONTAINER }}:${{ github.sha }}"
 
 

@@ -63,7 +63,7 @@ jobs:
   #              --tag ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_NAME_CONTAINER }}:${{ secrets.DOCKER_CONTAINER_TAG }} \
   #              --push .
 
-  deploy_to_GoogleCloud:
+  Deploy to Google Cloud:
     permissions:
       contents: 'read'
       id-token: 'write'
@@ -100,24 +100,21 @@ jobs:
           docker buildx create --use
           docker buildx build \
           --file ./Dockerfile \
-          --tag ${{ secrets.GCP_REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_APP }}/${{ secrets.GCP_APP }}:${{ github.sha }} \
+          --tag ${{ secrets.GCP_REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_APP }}/${{ secrets.DOCKER_NAME_CONTAINER }}:${{ github.sha }} \
           --push .
 
 
       - name: Deploy to Cloud Run
         id: release
         run: |-
-          gcloud run deploy ${{ secrets.GCP_SERVICE }} \
-            --image ${{ secrets.GCP_REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_APP }}/${{ secrets.GCP_APP }}:${{ github.sha }} \
-            --quiet \
-            --platform managed \
-            --region ${{ secrets.GCP_REGION }} \
-            --project ${{ secrets.GCP_PROJECT_ID }} \
-            --format json \
-            --port ${{ secrets.SERVICE_PORT }}
-            --add-cloudsql-instances ${{ secrets.GCP_SQL_INSTANCE }} \
-            --service-account ${{ secrets.GCP_SERVICE_ACCOUNT }} \
-            --allow-unauthenticated
+          gcloud run deploy ${{ secrets.DOCKER_NAME_CONTAINER }} \                                                      
+          --image=${{ secrets.GCP_REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_APP }}/${{ secrets.DOCKER_NAME_CONTAINER }}:${{ github.sha }} \
+          --region=${{ secrets.GCP_REGION }} \
+          --project=${{ secrets.GCP_PROJECT_ID }} \
+          --port=2222 \
+          --add-cloudsql-instances=${{ secrets.GCP_SQL_INSTANCE }} \
+          --service-account=${{ secrets.GCP_SQL_ACCOUNT_SERVICE }} \
+          --allow-unauthenticated
 
       - name: Report Cloud Deploy release
         run: |-

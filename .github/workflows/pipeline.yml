@@ -114,8 +114,9 @@ jobs:
             --region ${{ secrets.GCP_REGION }} \
             --project ${{ secrets.GCP_PROJECT_ID }} \
             --format json \
-            --add-cloudsql-instances=runapp-407111:europe-central2:run-app-db \
-            --update-env-vars SERVICE_NAME="Shoes Service" \
+            --port ${{ secrets.SERVICE_PORT }}
+            --add-cloudsql-instances ${{ secrets.GCP_SQL_INSTANCE }} \
+            --service-account ${{ secrets.GCP_SERVICE_ACCOUNT }} \
             --allow-unauthenticated
 
       - name: Report Cloud Deploy release

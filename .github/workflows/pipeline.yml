@@ -105,16 +105,31 @@ jobs:
 
 
       - name: Deploy to_Cloud Run
-        id: release
+        id: deploy
         run: |-
-          gcloud run deploy ${{ secrets.DOCKER_NAME_CONTAINER }} \                                                      
+          gcloud run deploy shoes-service \                                                    INT  system node  RunApp gcloud  15:23:54 
           --image=docker.io/denpool/shoes-service:0.0.3 \
-          --region=${{ secrets.GCP_REGION }} \
-          --project=${{ secrets.GCP_PROJECT_ID }} \
-          --port=${{ secrets.SERVICE_PORT }} \
-          --add-cloudsql-instances=${{ secrets.GCP_SQL_INSTANCE }} \
-          --service-account=${{ secrets.GCP_SQL_ACCOUNT_SERVICE }} \
+          --region=europe-central2 \
+          --project=runapp-407111 \
+          --port=2222 \
+          --add-cloudsql-instances=runapp-407111:europe-central2:run-app-db \
+          --service-account=denys-to-connect-db@runapp-407111.iam.gserviceaccount.com \
           --allow-unauthenticated
+  
+  
+
+  #      - id: 'deploy'
+#        uses: 'google-github-actions/deploy-cloudrun@v1'
+#        with:
+#          service: ${{ secrets.DOCKER_USERNAME }}
+#          image: ${{ secrets.GCP_REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_APP }}/${{ secrets.DOCKER_NAME_CONTAINER }}:${{ github.sha }}
+#          region: ${{ secrets.GCP_REGION }}
+#          project: ${{ secrets.GCP_PROJECT_ID }}
+#          port: ${{ secrets.SERVICE_PORT }}
+#          add-cloudsql-instances: ${{ secrets.GCP_SQL_INSTANCE }}
+#          service-account: ${{ GCP_SQL_ACCOUNT_SERVICE }}
+
+
 
       - name: Report Cloud Deploy release
         run: |-

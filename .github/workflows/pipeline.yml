@@ -67,11 +67,8 @@ jobs:
 
 
   Deploy_to_Google_Cloud:
-    permissions:
-      contents: 'read'
-      id-token: 'write'
-      runs-on: ubuntu-latest
-      needs: [ Build, Tests, Deploy_to_DockerHub ]
+    runs-on: ubuntu-latest
+    needs: [ Build, Tests, Deploy_to_DockerHub ]
 
     steps:
 

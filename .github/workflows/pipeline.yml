@@ -56,12 +56,12 @@ jobs:
   #        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
   #
   #      - name: Build Docker image
-  #        run: |
-  #          docker buildx create --use
-  #          docker buildx build \
-  #            --file ./Dockerfile \
-  #            --tag ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_NAME_CONTAINER }}:${{ secrets.DOCKER_CONTAINER_TAG }} \
-  #            --push .
+  #          run: |
+  #            docker buildx create --use
+  #            docker buildx build \
+  #              --file ./Dockerfile \
+  #              --tag ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_NAME_CONTAINER }}:${{ secrets.DOCKER_CONTAINER_TAG }} \
+  #              --push .
 
   deploy_to_GoogleCloud:
     permissions:
@@ -85,10 +85,10 @@ jobs:
           service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
 
 
-#      - name: Set up Cloud SDK
-#        uses: google-github-actions/setup-gcloud@v1
-#        with:
-#          project_id: ${{ secrets.GCP_PROJECT_ID }}
+      #      - name: Set up Cloud SDK
+      #        uses: google-github-actions/setup-gcloud@v1
+      #        with:
+      #          project_id: ${{ secrets.GCP_PROJECT_ID }}
 
       - name: Docker auth in Google
         run: |-
@@ -96,9 +96,12 @@ jobs:
 
 
       - name: Build and push container to Google Artifact Registry
-        run: |-
-          docker build -t "${{ secrets.GCP_REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_APP }}/${{ secrets.GCP_APP }}:${{ github.sha }}" ./Dockerfile \
-          docker push "${{ secrets.GCP_REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_APP }}/${{ secrets.DOCKER_NAME_CONTAINER }}:${{ github.sha }}"
+        run: |
+          docker buildx create --use
+          docker buildx build \
+          --file ./Dockerfile \
+          --tag ${{ secrets.GCP_REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_APP }}/${{ secrets.GCP_APP }}:${{ github.sha }} \
+          --push .
 
 
       - name: Deploy to Cloud Run

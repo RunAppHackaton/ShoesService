@@ -63,7 +63,7 @@ jobs:
   #              --tag ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_NAME_CONTAINER }}:${{ secrets.DOCKER_CONTAINER_TAG }} \
   #              --push .
 
-  Deploy to Google Cloud:
+  Deploy_to_Google_Cloud:
     permissions:
       contents: 'read'
       id-token: 'write'
@@ -104,7 +104,7 @@ jobs:
           --push .
 
 
-      - name: Deploy to Cloud Run
+      - name: Deploy to_Cloud Run
         id: release
         run: |-
           gcloud run deploy ${{ secrets.DOCKER_NAME_CONTAINER }} \                                                      

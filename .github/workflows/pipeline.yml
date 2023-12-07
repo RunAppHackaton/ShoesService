@@ -106,12 +106,12 @@ jobs:
         id: deploy
         run: |
           gcloud run deploy shoes-service \
-            --image=docker.io/denpool/shoes-service:0.0.3 \
-            --region=europe-central2 \
-            --project=runapp-407111 \
-            --port=2222 \
-            --add-cloudsql-instances=runapp-407111:europe-central2:run-app-db \
-            --service-account=denys-to-connect-db@runapp-407111.iam.gserviceaccount.com \
+            --image=${{ secrets.GCP_REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_APP }}/${{ secrets.DOCKER_NAME_CONTAINER }}:${{ github.sha }} \
+            --region=${{ secrets.GCP_REGION }} \
+            --project=${{ secrets.GCP_PROJECT_ID }} \
+            --port=${{ secrets.SERVICE_PORT }} \
+            --add-cloudsql-instances=${{ secrets.GCP_SQL_INSTANCE }} \
+            --service-account=${{ secrets.GCP_SQL_ACCOUNT_SERVICE }} \
             --allow-unauthenticated
 
 

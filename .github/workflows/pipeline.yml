@@ -108,6 +108,7 @@ jobs:
              --add-cloudsql-instances=runapp-407111:europe-central2:run-app-db \
              --service-account=denys-to-connect-db@runapp-407111.iam.gserviceaccount.com \
              --update-env-vars=SHOES_SERVICE_SERVER_PORT=${{ secrets.SHOES_SERVICE_SERVER_PORT }} \
+             --update-env-vars=DATABASE_USERNAME=sos \
              --allow-unauthenticated
 #          gcloud run deploy shoes-service \
 #            --image=${{ secrets.GCP_REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_APP }}/${{ secrets.DOCKER_NAME_CONTAINER }}:${{ github.sha }} \

@@ -96,7 +96,7 @@ jobs:
 
 
       - name: Build and push container to Google Artifact Registry
-        run: |
+        run: |- 
           docker buildx create --use
           docker buildx build \
           --file ./Dockerfile \
@@ -108,10 +108,10 @@ jobs:
         id: release
         run: |-
           gcloud run deploy ${{ secrets.DOCKER_NAME_CONTAINER }} \                                                      
-          --image=${{ secrets.GCP_REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_APP }}/${{ secrets.DOCKER_NAME_CONTAINER }}:${{ github.sha }} \
+          --image=docker.io/denpool/shoes-service:0.0.3 \
           --region=${{ secrets.GCP_REGION }} \
           --project=${{ secrets.GCP_PROJECT_ID }} \
-          --port=2222 \
+          --port=${{ secrets.SERVICE_PORT }} \
           --add-cloudsql-instances=${{ secrets.GCP_SQL_INSTANCE }} \
           --service-account=${{ secrets.GCP_SQL_ACCOUNT_SERVICE }} \
           --allow-unauthenticated

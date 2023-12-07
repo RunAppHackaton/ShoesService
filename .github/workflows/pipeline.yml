@@ -26,8 +26,7 @@ jobs:
 
   Tests:
     runs-on: ubuntu-latest
-
-    needs: build
+    needs: Build
 
     steps:
       - name: Checkout Repository
@@ -45,7 +44,7 @@ jobs:
 
   Deploy_to_DockerHub:
     runs-on: ubuntu-latest
-    needs: [ build, test ]
+    needs: [ Build, Tests ]
 
     steps:
 
@@ -72,7 +71,7 @@ jobs:
       contents: 'read'
       id-token: 'write'
       runs-on: ubuntu-latest
-      needs: [ build, test, deploy_to_DockerHub ]
+      needs: [ Build, Tests, Deploy_to_DockerHub ]
 
     steps:
 

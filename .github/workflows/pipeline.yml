@@ -100,30 +100,41 @@ jobs:
       - name: Deploy to Cloud Run
         id: deploy
         run: |-
-           gcloud run deploy shoes-service \
-             --image=docker.io/denpool/shoes-service:0.0.3 \
-             --region=europe-central2 \
-             --project=runapp-407111 \
-             --port=2222 \
-             --add-cloudsql-instances=runapp-407111:europe-central2:run-app-db \
-             --service-account=denys-to-connect-db@runapp-407111.iam.gserviceaccount.com \
-             --set-env-vars=SHOES_SERVICE_SERVER_PORT=${{ secrets.SHOES_SERVICE_SERVER_PORT }} \
-             --set-env-vars=ZIPKIN_URL=${{ secrets.ZIPKIN_URL }} \
-             --set-env-vars=DISCOVERY_SERVICE_URL=${{ secrets.DISCOVERY_SERVICE_URL }} \
+          gcloud run deploy shoes-service \
+            --image=${{ secrets.GCP_REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_APP }}/${{ secrets.DOCKER_NAME_CONTAINER }}:${{ github.sha }} \
+            --region=${{ secrets.GCP_REGION }} \
+            --project=${{ secrets.GCP_PROJECT_ID }} \
+            --port=${{ secrets.SERVICE_PORT }} \
+            --add-cloudsql-instances=${{ secrets.GCP_SQL_INSTANCE }} \
+            --service-account=${{ secrets.GCP_SQL_ACCOUNT_SERVICE }} \
+            --set-env-vars=SHOES_SERVICE_SERVER_PORT=${{ secrets.SHOES_SERVICE_SERVER_PORT }} \
+            --set-env-vars=ZIPKIN_URL=${{ secrets.ZIPKIN_URL }} \
+            --set-env-vars=DISCOVERY_SERVICE_URL=${{ secrets.DISCOVERY_SERVICE_URL }} \   
+            --allow-unauthenticated
+#           gcloud run deploy shoes-service \
+#             --image=docker.io/denpool/shoes-service:0.0.3 \
+#             --region=europe-central2 \
+#             --project=runapp-407111 \
+#             --port=2222 \
+#             --add-cloudsql-instances=runapp-407111:europe-central2:run-app-db \
+#             --service-account=denys-to-connect-db@runapp-407111.iam.gserviceaccount.com \
+#             --set-env-vars=SHOES_SERVICE_SERVER_PORT=${{ secrets.SHOES_SERVICE_SERVER_PORT }} \
+#             --set-env-vars=ZIPKIN_URL=${{ secrets.ZIPKIN_URL }} \
+#             --set-env-vars=DISCOVERY_SERVICE_URL=${{ secrets.DISCOVERY_SERVICE_URL }} \
+#             --allow-unauthenticated
 #             --set-env-vars=DATABASE_NAME=${{ secrets.DATABASE_NAME }} \
 #             --set-env-vars=DATABASE_USERNAME=${{ secrets.DATABASE_USERNAME }} \
 #             --set-env-vars=DATABASE_PASSWORD=${{ secrets.DATABASE_PASSWORD }} \
 #             --set-env-vars=SQL_INSTANCE_NAME= ${{ secrets.GCP_SQL_ACCOUNT_SERVICE }} \
 #             --set-env-vars=STORAGE_SERVICE_URL=${{ secrets.STORAGE_SERVICE_URL }} \
-             --allow-unauthenticated
-#          gcloud run deploy shoes-service \
-#            --image=${{ secrets.GCP_REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_APP }}/${{ secrets.DOCKER_NAME_CONTAINER }}:${{ github.sha }} \
-#            --region=${{ secrets.GCP_REGION }} \
-#            --project=${{ secrets.GCP_PROJECT_ID }} \
-#            --port=${{ secrets.SERVICE_PORT }} \
-#            --add-cloudsql-instances=${{ secrets.GCP_SQL_INSTANCE }} \
-#            --service-account=${{ secrets.GCP_SQL_ACCOUNT_SERVICE }} \
-#            --allow-unauthenticated
+          gcloud run deploy shoes-service \
+            --image=${{ secrets.GCP_REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_APP }}/${{ secrets.DOCKER_NAME_CONTAINER }}:${{ github.sha }} \
+            --region=${{ secrets.GCP_REGION }} \
+            --project=${{ secrets.GCP_PROJECT_ID }} \
+            --port=${{ secrets.SERVICE_PORT }} \
+            --add-cloudsql-instances=${{ secrets.GCP_SQL_INSTANCE }} \
+            --service-account=${{ secrets.GCP_SQL_ACCOUNT_SERVICE }} \
+            --allow-unauthenticated
 
       - name: Link to your service
         run: |-

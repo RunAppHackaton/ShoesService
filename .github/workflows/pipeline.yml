@@ -111,6 +111,8 @@ jobs:
             --update-env-vars=DATABASE_NAME=${{ secrets.DATABASE_NAME }} \
             --update-env-vars=DATABASE_USERNAME=${{ secrets.DATABASE_USERNAME }} \
             --update-env-vars=DATABASE_PASSWORD=${{ secrets.DATABASE_PASSWORD }} \
+            --update-env-vars=STORAGE_SERVICE_URL=${{ secrets.STORAGE_SERVICE_URL }} \
+            --update-env-vars=SQL_INSTANCE_NAME= ${{ secrets.GCP_SQL_INSTANCE }} \
             --allow-unauthenticated
 
       - name: Link to your service

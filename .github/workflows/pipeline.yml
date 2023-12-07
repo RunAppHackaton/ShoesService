@@ -114,7 +114,8 @@ jobs:
             --region ${{ secrets.GCP_REGION }} \
             --project ${{ secrets.GCP_PROJECT_ID }} \
             --format json \
-            --update-env-vars SERVICE_NAME="Cardf Service" \
+            --add-cloudsql-instances=runapp-407111:europe-central2:run-app-db \
+            --update-env-vars SERVICE_NAME="Shoes Service" \
             --allow-unauthenticated
 
       - name: Report Cloud Deploy release

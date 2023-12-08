@@ -106,6 +106,10 @@ jobs:
       - name: Extract and print DATABASE_NAME from secrets.json
         run: echo "DATABASE_NAME=$(jq -r '.DATABASE_NAME' secrets.json)" >> "$GITHUB_ENV"
 
+      - name: print env
+        run: |
+          echo "Variable from jq: $DATABASE_NAME"
+
 
   display_variables:
     needs: [ Deploy_to_Google_Cloud ]

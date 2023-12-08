@@ -100,11 +100,12 @@ jobs:
       - name: Copy secrets env file from Google Secret Manager to secrets.json
         run: gcloud secrets versions access latest --secret=SHOES-SERVICE-SECRETS-FILE > secrets.json
 
-      - name: Downloading a plugin "jq" to extract variables from a secrets file
-        run: |-
-          sudo apt-get install jq \
-          NAME=$(jq -r '.DATABASE_NAME' secrets.json) \
-          echo $NAME
+      - name: Install jq
+        run: sudo apt-get install jq
+
+      - name: Extract and print DATABASE_NAME from secrets.json
+        run: echo $(jq -r '.DATABASE_NAME' secrets.json)
+
 #
 #      - name: Deploy to Cloud Run
 #        id: deploy

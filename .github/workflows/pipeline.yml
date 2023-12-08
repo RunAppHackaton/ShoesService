@@ -108,7 +108,6 @@ jobs:
 
 
   display_variables:
-    needs: process_secrets
     runs-on: ubuntu-latest
     steps:
       - name: Use variables

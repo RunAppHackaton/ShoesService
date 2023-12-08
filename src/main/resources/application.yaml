@@ -22,6 +22,8 @@ eureka:
   client:
     service-url:
       defaultZone: ${DISCOVERY_SERVICE_URL}
+  instance:
+    hostname: https://shoes-service-4itoauiicq-lm.a.run.app
 
 spring:
   datasource:
@@ -51,6 +53,9 @@ spring:
       max-file-size: 5MB
       max-request-size: 6MB
   cloud:
+    service-registry:
+      auto-registration:
+        enabled: false
     openfeign:
       client:
         config:

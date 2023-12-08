@@ -23,7 +23,7 @@ eureka:
     service-url:
       defaultZone: ${DISCOVERY_SERVICE_URL}
   instance:
-    hostname: https://shoes-service-4itoauiicq-lm.a.run.app
+    instance-id: https://shoes-service-4itoauiicq-lm.a.run.app
 
 spring:
   datasource:

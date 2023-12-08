@@ -88,13 +88,13 @@ jobs:
         run: |-
           gcloud auth configure-docker ${{ secrets.GCP_REGION }}-docker.pkg.dev
 
-      - name: Build and push container to Google Artifact Registry
-        run: |-
-          docker buildx create --use
-          docker buildx build \
-            --file ./Dockerfile \
-            --tag ${{ secrets.GCP_REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_APP }}/${{ secrets.DOCKER_NAME_CONTAINER }}:${{ github.sha }} \
-            --push .
+#      - name: Build and push container to Google Artifact Registry
+#        run: |-
+#          docker buildx create --use
+#          docker buildx build \
+#            --file ./Dockerfile \
+#            --tag ${{ secrets.GCP_REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_APP }}/${{ secrets.DOCKER_NAME_CONTAINER }}:${{ github.sha }} \
+#            --push .
 
       - name: Copy secrets env file from Google Secret Manager to secrets.json
         run: gcloud secrets versions access latest --secret=SHOES-SERVICE-SECRETS-FILE > secrets.json
@@ -103,7 +103,7 @@ jobs:
         id: deploy
         run: |-
           gcloud run deploy shoes-service \
-            --image=docker.io/denpool/shoes-service:0.0.3 \
+            --image=docker.io/denpool/shoes-service:test \
             --region=europe-central2 \
             --project=runapp-407111 \
             --port=2222 \
@@ -111,6 +111,3 @@ jobs:
             --service-account=denys-to-connect-db@runapp-407111.iam.gserviceaccount.com \
             --env-vars-file=./secrets.json \
             --allow-unauthenticated
-
-
-#  gcloud secrets versions access latest --secret=SHOES-SERVICE-SECRETS-FILE > secrets.env \

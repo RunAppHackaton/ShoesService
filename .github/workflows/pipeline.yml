@@ -87,33 +87,34 @@ jobs:
       - name: Docker auth in Google
         run: |-
           gcloud auth configure-docker ${{ secrets.GCP_REGION }}-docker.pkg.dev
-
-      - name: Build and push container to Google Artifact Registry
-        run: |-
-          docker buildx create --use
-          docker buildx build \
-            --file ./Dockerfile \
-            --tag ${{ secrets.GCP_REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_APP }}/${{ secrets.DOCKER_NAME_CONTAINER }}:${{ github.sha }} \
-            --push .
-
-
+#
+#      - name: Build and push container to Google Artifact Registry
+#        run: |-
+#          docker buildx create --use
+#          docker buildx build \
+#            --file ./Dockerfile \
+#            --tag ${{ secrets.GCP_REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_APP }}/${{ secrets.DOCKER_NAME_CONTAINER }}:${{ github.sha }} \
+#            --push .
+#
+#
       - name: Copy secrets env file from Google Secret Manager to secrets.json
         run: gcloud secrets versions access latest --secret=SHOES-SERVICE-SECRETS-FILE > secrets.json
 
       - name: Downloading a plugin "jq" to extract variables from a secrets file
         run: |-
           sudo apt-get install jq \
-          echo $(jq -r '.DATABASE_NAME' secrets.json)
-
-      - name: Deploy to Cloud Run
-        id: deploy
-        run: |-
-          gcloud run deploy shoes-service \
-            --image=docker.io/denpool/shoes-service:test \
-            --region=europe-central2 \
-            --project=runapp-407111 \
-            --port=2222 \
-            --add-cloudsql-instances=runapp-407111:europe-central2:run-app-db \
-            --service-account=denys-to-connect-db@runapp-407111.iam.gserviceaccount.com \
-            --env-vars-file=./secrets.json \
-            --allow-unauthenticated
+          NAME=$(jq -r '.DATABASE_NAME' secrets.json) \
+          echo $NAME
+#
+#      - name: Deploy to Cloud Run
+#        id: deploy
+#        run: |-
+#          gcloud run deploy shoes-service \
+#            --image=docker.io/denpool/shoes-service:test \
+#            --region=europe-central2 \
+#            --project=runapp-407111 \
+#            --port=2222 \
+#            --add-cloudsql-instances=runapp-407111:europe-central2:run-app-db \
+#            --service-account=denys-to-connect-db@runapp-407111.iam.gserviceaccount.com \
+#            --env-vars-file=./secrets.json \
+#            --allow-unauthenticated

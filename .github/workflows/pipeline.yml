@@ -104,7 +104,7 @@ jobs:
         run: sudo apt-get install jq
 
       - name: Extract and print DATABASE_NAME from secrets.json
-        run: echo "$DATABASE_NAME=$(jq -r '.DATABASE_NAME' secrets.json)" >> $GITHUB_ENV
+        run: echo "$DATABASE_NAME=$(jq -r '.DATABASE_NAME' secrets.json)" >> "$GITHUB_ENV"
 
 
   display_variables:

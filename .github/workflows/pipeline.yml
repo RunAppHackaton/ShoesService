@@ -104,8 +104,16 @@ jobs:
         run: sudo apt-get install jq
 
       - name: Extract and print DATABASE_NAME from secrets.json
-        run: echo $(jq -r '.DATABASE_NAME' secrets.json)
+        run: echo $(jq -r '.DATABASE_NAME' secrets.json) >> $GITHUB_ENV
 
+
+  display_variables:
+    needs: process_secrets
+    runs-on: ubuntu-latest
+    steps:
+      - name: Use variables
+        run: |
+          echo "Variable from jq: $DATABASE_NAME"
 #
 #      - name: Deploy to Cloud Run
 #        id: deploy

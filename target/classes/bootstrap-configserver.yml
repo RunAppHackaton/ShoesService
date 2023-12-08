@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: guild-service
+  cloud:
+    config:
+      uri: http://${CONFIG_URL}:8887 # "localhost" or docker config container name
+      profile: ${CONFIG_PROFILE} # "localhost" or "docker"

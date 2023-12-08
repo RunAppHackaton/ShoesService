@@ -95,6 +95,7 @@ jobs:
 #            --file ./Dockerfile \
 #            --tag ${{ secrets.GCP_REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_APP }}/${{ secrets.DOCKER_NAME_CONTAINER }}:${{ github.sha }} \
 #            --push .
+#
 
       - name: Copy secrets env file from Google Secret Manager to secrets.json
         run: gcloud secrets versions access latest --secret=SHOES-SERVICE-SECRETS-FILE > secrets.json

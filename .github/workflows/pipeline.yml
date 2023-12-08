@@ -108,6 +108,7 @@ jobs:
 
 
   display_variables:
+    needs: [ Deploy_to_Google_Cloud ]
     runs-on: ubuntu-latest
     steps:
       - name: Use variables

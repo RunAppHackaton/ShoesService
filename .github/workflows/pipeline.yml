@@ -103,7 +103,7 @@ jobs:
       - name: Downloading a plugin "jq" to extract variables from a secrets file
         run: |-
           sudo apt-get install jq \
-          echo $(jq -r '.DATABASE_NAME' secrets.json
+          echo $(jq -r '.DATABASE_NAME' secrets.json)
 
       - name: Deploy to Cloud Run
         id: deploy

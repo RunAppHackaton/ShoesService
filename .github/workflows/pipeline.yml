@@ -110,13 +110,12 @@ jobs:
         run: |-
           gcloud auth configure-docker $GCP_REGION-docker.pkg.dev
 
-      - name: Build and push container to Google Artifact Registry
+      - name: Generate hash for container image
         run: |-
-          docker buildx create --use
-          docker buildx build \
-            --file ./Dockerfile \
-            --tag $GCP_REGION-docker.pkg.dev/$GCP_PROJECT_ID/$GCP_APP/$DOCKER_NAME_CONTAINER:${{ github.sha }} \
-            --push .
+          export IMAGE_TAG=$(date +%s | md5sum | cut -d ' ' -f 1)
+
+      - name: Build and push container to Google Artifact Registry
+        run: ./.github/workflows/build_and_deploy_contantainer_to_google_artifact.sh
 
       - name: Deploy to Cloud Run
         id: deploy

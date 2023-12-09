@@ -2,6 +2,6 @@
 
 docker buildx create --use
 docker buildx build \
-  --file ./Dockerfile \
+  --file ./.github/workflows/Dockerfile \
   --tag $GCP_REGION-docker.pkg.dev/$GCP_PROJECT_ID/$GCP_APP/$DOCKER_NAME_CONTAINER:$IMAGE_TAG \
   --push .

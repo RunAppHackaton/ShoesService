@@ -100,13 +100,13 @@ jobs:
           export SQL_INSTANCE_NAME=$(jq -r '.SQL_INSTANCE_NAME' secrets.json)
           export GCP_SQL_ACCOUNT_SERVICE_NAME=$(jq -r '.GCP_SQL_ACCOUNT_SERVICE_NAME' secrets.json)
           
-          echo "GCP_REGION=$GCP_REGION" >> $GITHUB_ENV
-          echo "GCP_PROJECT_ID=$GCP_PROJECT_ID" >> $GITHUB_ENV
-          echo "GCP_APP=$GCP_APP" >> $GITHUB_ENV
-          echo "DOCKER_NAME_CONTAINER=$DOCKER_NAME_CONTAINER" >> $GITHUB_ENV
-          echo "SHOES_SERVICE_SERVER_PORT=$SHOES_SERVICE_SERVER_PORT" >> $GITHUB_ENV
-          echo "SQL_INSTANCE_NAME=$SQL_INSTANCE_NAME" >> $GITHUB_ENV
-          echo "GCP_SQL_ACCOUNT_SERVICE_NAME=$GCP_SQL_ACCOUNT_SERVICE_NAME" >> $GITHUB_ENV
+          echo "GCP_REGION=$GCP_REGION" >> "$GITHUB_ENV"
+          echo "GCP_PROJECT_ID=$GCP_PROJECT_ID" >> "$GITHUB_ENV"
+          echo "GCP_APP=$GCP_APP" >> "$GITHUB_ENV"
+          echo "DOCKER_NAME_CONTAINER=$DOCKER_NAME_CONTAINER" >> "$GITHUB_ENV"
+          echo "SHOES_SERVICE_SERVER_PORT=$SHOES_SERVICE_SERVER_PORT" >> "$GITHUB_ENV"
+          echo "SQL_INSTANCE_NAME=$SQL_INSTANCE_NAME" >> "$GITHUB_ENV"
+          echo "GCP_SQL_ACCOUNT_SERVICE_NAME=$GCP_SQL_ACCOUNT_SERVICE_NAME" >> "$GITHUB_ENV"
 #          GCP_REGION=$(jq -r '.GCP_REGION' secrets.json)
 #          GCP_PROJECT_ID=$(jq -r '.GCP_PROJECT_ID' secrets.json)
 #          GCP_APP=$(jq -r '.GCP_APP' secrets.json)
@@ -117,7 +117,7 @@ jobs:
 
       - name: Docker auth in Google
         run: |-
-          gcloud auth configure-docker ${GCP_REGION}-docker.pkg.dev
+          gcloud auth configure-docker "$GCP_REGION"-docker.pkg.dev
 
       - name: Build and push container to Google Artifact Registry
         run: |-

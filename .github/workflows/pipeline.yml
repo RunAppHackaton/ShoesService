@@ -99,6 +99,7 @@ jobs:
           export SHOES_SERVICE_SERVER_PORT=$(jq -r '.SHOES_SERVICE_SERVER_PORT' secrets.json)
           export SQL_INSTANCE_NAME=$(jq -r '.SQL_INSTANCE_NAME' secrets.json)
           export GCP_SQL_ACCOUNT_SERVICE_NAME=$(jq -r '.GCP_SQL_ACCOUNT_SERVICE_NAME' secrets.json)
+          echo "GCP_REGION=$GCP_REGION"
           
           echo "GCP_REGION=$GCP_REGION" >> "$GITHUB_ENV"
           echo "GCP_PROJECT_ID=$GCP_PROJECT_ID" >> "$GITHUB_ENV"

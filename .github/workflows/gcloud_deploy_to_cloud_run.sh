@@ -1,6 +1,9 @@
 #!/bin/bash
+
+export GITHUB_SHA="$1"
+
 gcloud run deploy $DOCKER_NAME_CONTAINER \
-  --image=$GCP_REGION-docker.pkg.dev/$GCP_PROJECT_ID/$GCP_APP/$DOCKER_NAME_CONTAINER:${{ github.sha }} \
+  --image=$GCP_REGION-docker.pkg.dev/$GCP_PROJECT_ID/$GCP_APP/$DOCKER_NAME_CONTAINER:$GITHUB_SHA \
   --region=$GCP_REGION \
   --project=$GCP_PROJECT_ID \
   --port=$SHOES_SERVICE_SERVER_PORT \

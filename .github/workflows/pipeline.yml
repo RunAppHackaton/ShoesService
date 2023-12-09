@@ -92,13 +92,28 @@ jobs:
 
       - name: Extracting secrets from a secret file
         run: |-
-          GCP_REGION=$(jq -r '.GCP_REGION' secrets.json) 
-          GCP_PROJECT_ID=$(jq -r '.GCP_PROJECT_ID' secrets.json) 
-          GCP_APP=$(jq -r '.GCP_APP' secrets.json) 
-          DOCKER_NAME_CONTAINER=$(jq -r '.DOCKER_NAME_CONTAINER' secrets.json) 
-          SHOES_SERVICE_SERVER_PORT=$(jq -r '.SHOES_SERVICE_SERVER_PORT' secrets.json) 
-          SQL_INSTANCE_NAME=$(jq -r '.SQL_INSTANCE_NAME' secrets.json) 
-          GCP_SQL_ACCOUNT_SERVICE_NAME=$(jq -r '.GCP_SQL_ACCOUNT_SERVICE_NAME' secrets.json) 
+          export GCP_REGION=$(jq -r '.GCP_REGION' secrets.json)
+          export GCP_PROJECT_ID=$(jq -r '.GCP_PROJECT_ID' secrets.json)
+          export GCP_APP=$(jq -r '.GCP_APP' secrets.json)
+          export DOCKER_NAME_CONTAINER=$(jq -r '.DOCKER_NAME_CONTAINER' secrets.json)
+          export SHOES_SERVICE_SERVER_PORT=$(jq -r '.SHOES_SERVICE_SERVER_PORT' secrets.json)
+          export SQL_INSTANCE_NAME=$(jq -r '.SQL_INSTANCE_NAME' secrets.json)
+          export GCP_SQL_ACCOUNT_SERVICE_NAME=$(jq -r '.GCP_SQL_ACCOUNT_SERVICE_NAME' secrets.json)
+          
+          echo "GCP_REGION=$GCP_REGION" >> $GITHUB_ENV
+          echo "GCP_PROJECT_ID=$GCP_PROJECT_ID" >> $GITHUB_ENV
+          echo "GCP_APP=$GCP_APP" >> $GITHUB_ENV
+          echo "DOCKER_NAME_CONTAINER=$DOCKER_NAME_CONTAINER" >> $GITHUB_ENV
+          echo "SHOES_SERVICE_SERVER_PORT=$SHOES_SERVICE_SERVER_PORT" >> $GITHUB_ENV
+          echo "SQL_INSTANCE_NAME=$SQL_INSTANCE_NAME" >> $GITHUB_ENV
+          echo "GCP_SQL_ACCOUNT_SERVICE_NAME=$GCP_SQL_ACCOUNT_SERVICE_NAME" >> $GITHUB_ENV
+#          GCP_REGION=$(jq -r '.GCP_REGION' secrets.json)
+#          GCP_PROJECT_ID=$(jq -r '.GCP_PROJECT_ID' secrets.json)
+#          GCP_APP=$(jq -r '.GCP_APP' secrets.json)
+#          DOCKER_NAME_CONTAINER=$(jq -r '.DOCKER_NAME_CONTAINER' secrets.json)
+#          SHOES_SERVICE_SERVER_PORT=$(jq -r '.SHOES_SERVICE_SERVER_PORT' secrets.json)
+#          SQL_INSTANCE_NAME=$(jq -r '.SQL_INSTANCE_NAME' secrets.json)
+#          GCP_SQL_ACCOUNT_SERVICE_NAME=$(jq -r '.GCP_SQL_ACCOUNT_SERVICE_NAME' secrets.json)
 
       - name: Docker auth in Google
         run: |-

@@ -75,7 +75,7 @@ jobs:
         run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
 
       - name: Build Docker image and Push
-        run: ./.github/workflows/docker_build_and_push.sh "${{ github.sha }}"
+        run: ./.github/workflows/docker_build_and_push.sh ${{ github.sha }}
 
 
   Deploy_to_Google_Cloud:

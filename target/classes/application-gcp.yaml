@@ -20,8 +20,6 @@ springdoc:
 
 eureka:
   client:
-    service-url:
-      defaultZone: ${DISCOVERY_SERVICE_URL}
     enabled: false
 
 spring:

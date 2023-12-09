@@ -112,7 +112,7 @@ jobs:
 
       - name: Generate hash for container image
         run: |-
-          export IMAGE_TAG=$(date +%s | md5sum | cut -d ' ' -f 1)
+          echo "IMAGE_TAG=$(date +%s | md5sum | cut -d ' ' -f 1)" >> "$GITHUB_ENV"
 
       - name: Build and push container to Google Artifact Registry
         run: ./.github/workflows/build_and_deploy_contantainer_to_google_artifact.sh

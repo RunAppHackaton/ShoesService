@@ -92,7 +92,7 @@ jobs:
 
       - name: Extracting secrets from a secret file
         run: |-
-          GCP_REGION=$(jq -r '.GCP_REGION' secrets.json)
+          export GCP_REGION=$(jq -r '.GCP_REGION' secrets.json)
           export GCP_PROJECT_ID=$(jq -r '.GCP_PROJECT_ID' secrets.json)
           export GCP_APP=$(jq -r '.GCP_APP' secrets.json)
           export DOCKER_NAME_CONTAINER=$(jq -r '.DOCKER_NAME_CONTAINER' secrets.json)

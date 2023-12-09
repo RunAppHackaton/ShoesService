@@ -117,7 +117,7 @@ jobs:
 
       - name: Docker auth in Google
         run: |-
-          echo ${GCP_REGION}
+          echo "$GCP_REGION"
           gcloud auth configure-docker $GCP_REGION-docker.pkg.dev
 
       - name: Build and push container to Google Artifact Registry

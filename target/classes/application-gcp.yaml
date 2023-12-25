@@ -34,6 +34,8 @@ spring:
         cloudSqlInstance: ${SQL_INSTANCE_NAME}
         enableIamAuth: true
         sslmode: disable
+      maximum-pool-size: 6
+      minimum-idle: 5
   jpa:
     properties:
       hibernate:
@@ -58,5 +60,7 @@ spring:
         config:
           storage-service:
             url: ${STORAGE_SERVICE_URL}
+          profile-service:
+            url: ${PROFILE_SERVICE_URL}
 
 storage-directory: ShoesService/

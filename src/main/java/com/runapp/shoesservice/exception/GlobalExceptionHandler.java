@@ -1,5 +1,7 @@
 package com.runapp.shoesservice.exception;
 
+import com.runapp.shoesservice.dto.response.DeleteResponse;
+import feign.FeignException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -31,6 +33,13 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         body.put("error-message", ex.getMessage());
 
         return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(FeignException.InternalServerError.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ResponseEntity<Object> handleFeignExceptionInternalServerError(NoEntityFoundException ex,
+                                                                       WebRequest request) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new DeleteResponse("the image does not exist or the data was transferred incorrectly"));
     }
 
     @Override

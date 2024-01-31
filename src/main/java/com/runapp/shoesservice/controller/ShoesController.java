@@ -6,6 +6,7 @@ import com.runapp.shoesservice.dto.request.ShoesRequest;
 import com.runapp.shoesservice.dto.response.DeleteResponse;
 import com.runapp.shoesservice.dto.response.ShoesResponse;
 import com.runapp.shoesservice.dto.shoesDtoMapper.ShoesDtoMapper;
+import com.runapp.shoesservice.exception.NoEntityFoundException;
 import com.runapp.shoesservice.feignClient.StorageServiceClient;
 import com.runapp.shoesservice.model.ShoesModel;
 import com.runapp.shoesservice.service.ShoesService;
@@ -90,9 +91,7 @@ public class ShoesController {
                                                      @PathVariable Long id,
                                                      @Parameter(description = "Updated shoes data", required = true)
                                                      @RequestBody ShoesRequest shoesRequest) {
-        Optional<ShoesModel> optionalShoesModel = shoesService.getShoesById(id);
-        if (optionalShoesModel.isEmpty()) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        ShoesModel shoesModel = shoesDtoMapper.toModel(shoesRequest);
+        ShoesModel shoesModel = shoesService.getShoesById(id).orElseThrow(NoEntityFoundException::new);
         ShoesModel updatedShoes = shoesService.updateShoes(id, shoesModel);
         ShoesResponse updatedShoesResponse = shoesDtoMapper.toResponse(updatedShoes);
         return new ResponseEntity<>(updatedShoesResponse, HttpStatus.OK);
@@ -105,8 +104,7 @@ public class ShoesController {
     @ApiResponse(responseCode = "404", description = "Shoes not found")
     public ResponseEntity<DeleteResponse> deleteShoes(@Parameter(description = "Shoes ID", required = true)
                                                       @PathVariable Long id) {
-        Optional<ShoesModel> optionalShoesModel = shoesService.getShoesById(id);
-        if (optionalShoesModel.isEmpty()) return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        shoesService.getShoesById(id).orElseThrow(NoEntityFoundException::new);
         shoesService.deleteShoes(id);
         return new ResponseEntity<>(new DeleteResponse("Shoes deleted successfully"), HttpStatus.NO_CONTENT);
     }
@@ -119,15 +117,11 @@ public class ShoesController {
     public ResponseEntity<Object> uploadImage(
             @Parameter(description = "Image file to upload", required = true) @RequestParam("file") MultipartFile file,
             @Parameter(description = "ID of the story to associate with the uploaded image", required = true) @RequestParam("shoes_id") Long shoesId) {
-        Optional<ShoesModel> optionalShoesModel = shoesService.getShoesById(shoesId);
-        if (optionalShoesModel.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Shoes with id " + shoesId + " not found");
-        } else {
-            ShoesModel shoesModel = optionalShoesModel.orElse(null);
-            shoesModel.setShoesImageUrl(storageServiceClient.uploadFile(file, storageDirectory).getFile_uri());
-            shoesService.updateShoes(shoesId, shoesModel);
-            return ResponseEntity.ok().body(shoesModel);
-        }
+        ShoesModel shoesModel = shoesService.getShoesById(shoesId).orElseThrow(()->new NoEntityFoundException("Shoes with id " + shoesId + " not found"));
+        shoesModel.setShoesImageUrl(storageServiceClient.uploadFile(file, storageDirectory).getFile_uri());
+        shoesService.updateShoes(shoesId, shoesModel);
+        return ResponseEntity.ok().body(shoesModel);
+
     }
 
     @DeleteMapping("/delete-image")
@@ -137,19 +131,12 @@ public class ShoesController {
     @ApiResponse(responseCode = "500", description = "Internal server error")
     public ResponseEntity<Object> deleteImage(@Parameter(description = "Request body containing story ID and image URI", required = true)
                                               @RequestBody ShoesDeleteRequest shoesDeleteRequest) {
-        Optional<ShoesModel> optionalShoesModel = shoesService.getShoesById(shoesDeleteRequest.getShoes_id());
-        if (optionalShoesModel.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Shoes with id " + shoesDeleteRequest.getShoes_id() + " not found");
-        }
-        ShoesModel shoesModel = optionalShoesModel.orElse(null);
+        ShoesModel shoesModel = shoesService.getShoesById(shoesDeleteRequest.getShoes_id()).orElseThrow(()->new NoEntityFoundException("Shoes with id " + shoesDeleteRequest.getShoes_id() + " not found"));
         shoesModel.setShoesImageUrl("DEFAULT");
         shoesService.updateShoes(shoesDeleteRequest.getShoes_id(), shoesModel);
-        try {
-            storageServiceClient.deleteFile(new DeleteStorageRequest(shoesDeleteRequest.getFile_uri(), storageDirectory));
-            return ResponseEntity.ok().build();
-        } catch (FeignException.InternalServerError e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new DeleteResponse("the image does not exist or the data was transferred incorrectly"));
-        }
+        storageServiceClient.deleteFile(new DeleteStorageRequest(shoesDeleteRequest.getFile_uri(), storageDirectory));
+        return ResponseEntity.ok().build();
+
     }
 
     @PutMapping("/update-mileage/{id}/{additionalKilometers}")
@@ -159,24 +146,13 @@ public class ShoesController {
     public ResponseEntity<Object> updateMileage(
             @Parameter(description = "Shoes ID", required = true) @PathVariable Long id,
             @Parameter(description = "Additional kilometers", required = true) @PathVariable int additionalKilometers) {
-        ShoesModel shoesModel = shoesService.getShoesById(id).orElse(null);
+        ShoesModel shoesModel = shoesService.getShoesById(id).orElseThrow(()->new NoEntityFoundException("Shoes with id " + id + " not found"));
 
-        if (shoesModel == null) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Shoes with id " + id + " not found");
-        }
-
-        int updatedMileage = shoesModel.getMileage() + additionalKilometers;
-        shoesModel.setMileage(updatedMileage);
-
-        if (updatedMileage < 150) {
-            shoesModel.setCondition(ConditionShoesEnum.USED);
-        } else if (updatedMileage < 400) {
-            shoesModel.setCondition(ConditionShoesEnum.WORN_OUT);
-        } else if (updatedMileage < 800) {
-            shoesModel.setCondition(ConditionShoesEnum.DAMAGED);
-        }
+        shoesModel = shoesService.updateShoesModelMileage(shoesModel, additionalKilometers);
         shoesService.updateShoes(id, shoesModel);
 
         return ResponseEntity.ok().build();
     }
+
+
 }

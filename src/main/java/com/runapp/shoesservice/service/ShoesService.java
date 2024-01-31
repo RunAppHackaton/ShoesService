@@ -1,7 +1,9 @@
 package com.runapp.shoesservice.service;
 
+import com.runapp.shoesservice.exception.NoEntityFoundException;
 import com.runapp.shoesservice.model.ShoesModel;
 import com.runapp.shoesservice.repository.ShoesRepository;
+import com.runapp.shoesservice.utill.ConditionShoesEnum;
 import com.runapp.shoesservice.utill.UserExistHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -51,7 +53,7 @@ public class ShoesService {
             updatedShoes.setId(id);
             return shoesRepository.save(updatedShoes);
         } else {
-            throw new RuntimeException("Shoes with id " + id + " not found.");
+            throw new NoEntityFoundException("Shoes with id " + id + " not found.");
         }
     }
 
@@ -60,7 +62,21 @@ public class ShoesService {
         if (shoesRepository.existsById(id)) {
             shoesRepository.deleteById(id);
         } else {
-            throw new RuntimeException("Shoes with id " + id + " not found.");
+            throw new NoEntityFoundException("Shoes with id " + id + " not found.");
         }
+    }
+
+    public ShoesModel updateShoesModelMileage(ShoesModel shoesModel, int additionalKilometers){
+        int updatedMileage = shoesModel.getMileage() + additionalKilometers;
+        shoesModel.setMileage(updatedMileage);
+
+        if (updatedMileage < 150) {
+            shoesModel.setCondition(ConditionShoesEnum.USED);
+        } else if (updatedMileage < 400) {
+            shoesModel.setCondition(ConditionShoesEnum.WORN_OUT);
+        } else if (updatedMileage < 800) {
+            shoesModel.setCondition(ConditionShoesEnum.DAMAGED);
+        }
+        return shoesModel;
     }
 }

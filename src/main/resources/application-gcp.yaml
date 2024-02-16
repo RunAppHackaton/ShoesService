@@ -23,6 +23,9 @@ eureka:
     enabled: false
 
 spring:
+  sql:
+    init:
+      mode: always
   datasource:
     url: jdbc:postgresql:///${DATABASE_NAME}
     username: ${DATABASE_USERNAME}
@@ -43,6 +46,7 @@ spring:
         show_sql: true
     hibernate:
       ddl-auto: create-drop
+    defer-datasource-initialization: true
   application:
     name: shoes-service
   servlet:

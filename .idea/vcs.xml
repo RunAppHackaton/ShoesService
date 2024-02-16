@@ -2,5 +2,14 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../AchievementService" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../EventService" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../GuildService" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../ProfileService" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../SocialService" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../StorageService" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../StoryManagementService" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../StoryProgressService" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../WorkoutService" vcs="Git" />
   </component>
 </project>

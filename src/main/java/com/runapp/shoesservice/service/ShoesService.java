@@ -8,6 +8,9 @@ import com.runapp.shoesservice.utill.UserExistHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,16 +29,19 @@ public class ShoesService {
         this.userExistHandler = userExistHandler;
     }
 
+    @Cacheable("shoes")
     public List<ShoesModel> getAllShoes() {
         LOGGER.info("Shoes get all");
         return shoesRepository.findAll();
     }
 
+    @Cacheable(value = "shoes", key = "#id")
     public Optional<ShoesModel> getShoesById(Long id) {
         LOGGER.info("Shoes get by id: {}", id);
         return shoesRepository.findById(id);
     }
 
+    @CachePut(value = "shoes", key = "#shoesModel.id")
     public ShoesModel createShoes(ShoesModel shoesModel) {
         LOGGER.info("Shoes add: {}", shoesModel);
         // this method check user exists
@@ -44,6 +50,7 @@ public class ShoesService {
         return shoesRepository.save(shoesModel);
     }
 
+    @CachePut(value = "shoes", key = "#updatedShoes.id")
     public ShoesModel updateShoes(Long id, ShoesModel updatedShoes) {
         LOGGER.info("Shoes update by id: id={}, updatedShoes={}", id, updatedShoes);
         // this method check user exists
@@ -57,6 +64,7 @@ public class ShoesService {
         }
     }
 
+    @CacheEvict(value = "shoes")
     public void deleteShoes(Long id) {
         LOGGER.info("Shoes delete by id: {}", id);
         if (shoesRepository.existsById(id)) {
@@ -66,6 +74,7 @@ public class ShoesService {
         }
     }
 
+    @Cacheable(value = "shoes", key = "#shoesModel.id")
     public ShoesModel updateShoesModelMileage(ShoesModel shoesModel, int additionalKilometers){
         int updatedMileage = shoesModel.getMileage() + additionalKilometers;
         shoesModel.setMileage(updatedMileage);

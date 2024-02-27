@@ -1,8 +1,0 @@
-1. write new model
-2. write new 10 shoes
-3. new controller, repository
-4.
-5.
-6.
-7.
-8.

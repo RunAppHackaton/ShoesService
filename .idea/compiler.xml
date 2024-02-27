@@ -16,6 +16,7 @@
         <module name="GuildService" />
         <module name="AchievementService" />
         <module name="WorkoutService" />
+        <module name="Api-Gateway" />
         <module name="StorageService" />
       </profile>
     </annotationProcessing>
@@ -23,6 +24,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="AchievementService" options="-parameters" />
+      <module name="Api-Gateway" options="-parameters" />
       <module name="GuildService" options="-parameters" />
       <module name="ProfileService" options="-parameters" />
       <module name="ShoesService" options="-parameters" />

@@ -10,8 +10,6 @@ import com.runapp.shoesservice.exception.NoEntityFoundException;
 import com.runapp.shoesservice.feignClient.StorageServiceClient;
 import com.runapp.shoesservice.model.ShoesModel;
 import com.runapp.shoesservice.service.ShoesService;
-import com.runapp.shoesservice.utill.ConditionShoesEnum;
-import feign.FeignException;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -92,7 +90,7 @@ public class ShoesController {
                                                      @Parameter(description = "Updated shoes data", required = true)
                                                      @RequestBody ShoesRequest shoesRequest) {
         ShoesModel shoesModel = shoesService.getShoesById(id).orElseThrow(NoEntityFoundException::new);
-        ShoesModel updatedShoes = shoesService.updateShoes(id, shoesModel);
+        ShoesModel updatedShoes = shoesService.updateShoes(id, shoesDtoMapper.toModel(shoesRequest));
         ShoesResponse updatedShoesResponse = shoesDtoMapper.toResponse(updatedShoes);
         return new ResponseEntity<>(updatedShoesResponse, HttpStatus.OK);
     }
@@ -153,6 +151,4 @@ public class ShoesController {
 
         return ResponseEntity.ok().build();
     }
-
-
 }

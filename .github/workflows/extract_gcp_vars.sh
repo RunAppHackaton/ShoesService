@@ -7,3 +7,5 @@ echo "DOCKER_NAME_CONTAINER=$(jq -r '.DOCKER_NAME_CONTAINER' secrets.json)" >> "
 echo "SHOES_SERVICE_SERVER_PORT=$(jq -r '.SHOES_SERVICE_SERVER_PORT' secrets.json)" >> "$GITHUB_ENV"
 echo "SQL_INSTANCE_NAME=$(jq -r '.SQL_INSTANCE_NAME' secrets.json)" >> "$GITHUB_ENV"
 echo "GCP_SQL_ACCOUNT_SERVICE_NAME=$(jq -r '.GCP_SQL_ACCOUNT_SERVICE_NAME' secrets.json)" >> "$GITHUB_ENV"
+echo "VPC_CONNECTOR_NAME=$(jq -r '.VPC_CONNECTOR_NAME' secrets.json)" >> "$GITHUB_ENV"
+

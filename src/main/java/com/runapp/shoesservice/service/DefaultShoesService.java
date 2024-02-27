@@ -5,6 +5,7 @@ import com.runapp.shoesservice.repository.DefaultShoesRepository;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,6 +17,7 @@ public class DefaultShoesService {
     private static final Logger LOGGER = LoggerFactory.getLogger(ShoesService.class);
     private final DefaultShoesRepository defaultShoesRepository;
 
+    @Cacheable("default-shoes")
     public List<DefaultShoesModel> getAllShoes() {
         LOGGER.info("Default Shoes get all");
         return defaultShoesRepository.findAll();

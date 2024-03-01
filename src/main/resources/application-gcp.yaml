@@ -74,7 +74,7 @@ spring:
             url: ${PROFILE_SERVICE_URL}
   data:
     redis:
-      host: ${REDIS_HOST:10.179.241.235}
+      host: ${REDIS_HOST:localhost}
       port: ${REDIS_PORT:6379}
 
 storage-directory: ShoesService/

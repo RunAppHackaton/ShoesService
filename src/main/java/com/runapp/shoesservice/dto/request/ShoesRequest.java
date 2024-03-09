@@ -13,5 +13,5 @@ public class ShoesRequest {
     private String model;
     private int size;
     private int mileage;
-    private int userId;
+    private String userId;
 }

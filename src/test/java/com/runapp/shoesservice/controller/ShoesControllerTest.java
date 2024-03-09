@@ -8,21 +8,16 @@ import com.runapp.shoesservice.exception.GlobalExceptionHandler;
 import com.runapp.shoesservice.feignClient.StorageServiceClient;
 import com.runapp.shoesservice.model.ShoesModel;
 import com.runapp.shoesservice.service.ShoesService;
-import jakarta.ws.rs.core.Application;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.springframework.beans.factory.BeanFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.ResultMatcher;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
@@ -32,9 +27,8 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
-import static org.springframework.test.web.client.match.MockRestRequestMatchers.content;
-import static org.springframework.test.web.client.match.MockRestRequestMatchers.jsonPath;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 public class ShoesControllerTest {
@@ -119,7 +113,7 @@ public class ShoesControllerTest {
         when(shoesDtoMapper.toResponse(createdShoes)).thenReturn(expectedResponse);
 
         // Act
-        ResponseEntity<ShoesResponse> responseEntity = shoesController.createShoes(shoesRequest);
+        ResponseEntity<ShoesResponse> responseEntity = shoesController.createShoes(shoesRequest,"1");
 
         // Assert
         assertEquals(HttpStatus.CREATED, responseEntity.getStatusCode());
@@ -151,14 +145,14 @@ public class ShoesControllerTest {
         shoesRequest.setBrand("A");
         shoesRequest.setModel("B");
         shoesRequest.setMileage(111);
-        shoesRequest.setUserId(1);
+        shoesRequest.setUserId("1");
         shoesRequest.setSize(33);
         Mockito.when(shoesService.getShoesById(shoesId)).thenReturn(Optional.of(existingShoesModel));
         Mockito.when(shoesService.updateShoes(shoesId, existingShoesModel)).thenReturn(updatedShoesModel);
         Mockito.when(shoesDtoMapper.toResponse(updatedShoesModel)).thenReturn(expectedResponse);
 
         // Perform the request and assert the response
-        mockMvc.perform(put("/shoes/{id}", shoesId)
+        mockMvc.perform(put("/shoes/{id}", shoesId).header("X-UserId", "1")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(shoesRequest)))
                 .andExpect(status().isOk());
@@ -172,7 +166,7 @@ public class ShoesControllerTest {
         Mockito.when(shoesService.getShoesById(shoesId)).thenReturn(Optional.empty());
 
         // Perform the request and assert the response
-        mockMvc.perform(put("/shoes/{id}", shoesId)
+        mockMvc.perform(put("/shoes/{id}", shoesId).header("X-UserId", "1")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(shoesRequest)))
                 .andExpect(status().isNotFound());

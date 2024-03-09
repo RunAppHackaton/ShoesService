@@ -52,7 +52,7 @@ public class ShoesController {
         List<ShoesModel> shoesModels = shoesService.getAllShoes();
         List<ShoesResponse> shoesResponses = shoesModels.stream()
                 .map(shoesDtoMapper::toResponse)
-                .collect(Collectors.toList());
+                .toList();
         return shoesResponses;
     }
 
@@ -73,7 +73,9 @@ public class ShoesController {
     @ApiResponse(responseCode = "201", description = "Shoes created", content = @Content(schema = @Schema(implementation = ShoesResponse.class)))
     @ApiResponse(responseCode = "400", description = "Invalid input")
     public ResponseEntity<ShoesResponse> createShoes(@Parameter(description = "Shoes data", required = true)
-                                                     @RequestBody ShoesRequest shoesRequest) {
+                                                     @RequestBody ShoesRequest shoesRequest,
+                                                     @RequestHeader("X-UserId") String userId) {
+        shoesRequest.setUserId(userId);
         ShoesModel shoesModel = shoesDtoMapper.toModel(shoesRequest);
         ShoesModel createdShoes = shoesService.createShoes(shoesModel);
         ShoesResponse createdShoesResponse = shoesDtoMapper.toResponse(createdShoes);
@@ -88,7 +90,9 @@ public class ShoesController {
     public ResponseEntity<ShoesResponse> updateShoes(@Parameter(description = "Shoes ID", required = true)
                                                      @PathVariable Long id,
                                                      @Parameter(description = "Updated shoes data", required = true)
-                                                     @RequestBody ShoesRequest shoesRequest) {
+                                                     @RequestBody ShoesRequest shoesRequest,
+                                                     @RequestHeader("X-UserId") String userId) {
+        shoesRequest.setUserId(userId);
         ShoesModel shoesModel = shoesService.getShoesById(id).orElseThrow(NoEntityFoundException::new);
         ShoesModel updatedShoes = shoesService.updateShoes(id, shoesDtoMapper.toModel(shoesRequest));
         ShoesResponse updatedShoesResponse = shoesDtoMapper.toResponse(updatedShoes);

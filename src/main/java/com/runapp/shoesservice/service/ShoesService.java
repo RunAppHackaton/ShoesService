@@ -4,7 +4,6 @@ import com.runapp.shoesservice.exception.NoEntityFoundException;
 import com.runapp.shoesservice.model.ShoesModel;
 import com.runapp.shoesservice.repository.ShoesRepository;
 import com.runapp.shoesservice.utill.ConditionShoesEnum;
-import com.runapp.shoesservice.utill.UserExistHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,13 +19,11 @@ import java.util.Optional;
 public class ShoesService {
 
     private final ShoesRepository shoesRepository;
-    private final UserExistHandler userExistHandler;
     private static final Logger LOGGER = LoggerFactory.getLogger(ShoesService.class);
 
     @Autowired
-    public ShoesService(ShoesRepository shoesRepository, UserExistHandler userExistHandler) {
+    public ShoesService(ShoesRepository shoesRepository) {
         this.shoesRepository = shoesRepository;
-        this.userExistHandler = userExistHandler;
     }
 
     @Cacheable("shoes")
@@ -45,7 +42,6 @@ public class ShoesService {
     public ShoesModel createShoes(ShoesModel shoesModel) {
         LOGGER.info("Shoes add: {}", shoesModel);
         // this method check user exists
-        userExistHandler.handleRequest(shoesModel.getUserId());
 
         return shoesRepository.save(shoesModel);
     }
@@ -54,7 +50,6 @@ public class ShoesService {
     public ShoesModel updateShoes(Long id, ShoesModel updatedShoes) {
         LOGGER.info("Shoes update by id: id={}, updatedShoes={}", id, updatedShoes);
         // this method check user exists
-        userExistHandler.handleRequest(updatedShoes.getUserId());
 
         if (shoesRepository.existsById(id)) {
             updatedShoes.setId(id);

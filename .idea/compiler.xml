@@ -10,16 +10,18 @@
         <module name="ShoesService" />
         <module name="StoryManagementService" />
         <module name="ProfileService" />
-        <module name="SocialService" />
         <module name="event-service" />
         <module name="StoryProgressService" />
         <module name="GuildService" />
-        <module name="AchievementService" />
         <module name="WorkoutService" />
         <module name="Api-Gateway" />
         <module name="StorageService" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="AchievementService" target="17" />
+      <module name="SocialService" target="17" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">

@@ -37,7 +37,7 @@ public class ShoesModel implements Serializable {
     private ConditionShoesEnum condition;
 
     @Column(name = "user_id")
-    private int userId;
+    private String userId;
 
     @Column(name = "shoes_image_url")
     private String shoesImageUrl;

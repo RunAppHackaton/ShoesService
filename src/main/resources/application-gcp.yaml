@@ -1,5 +1,5 @@
 server:
-  port: ${SHOES_SERVICE_SERVER_PORT}
+  port: ${SERVICE_SERVER_PORT}
 
 management:
   tracing:

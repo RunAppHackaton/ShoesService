@@ -17,6 +17,6 @@ public class ShoesResponse {
     private int size;
     private int mileage;
     private ConditionShoesEnum condition;
-    private int userId;
+    private String userId;
     private String shoes_image_url;
 }

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -38,7 +39,11 @@ public class ShoesService {
         return shoesRepository.findById(id);
     }
 
-    @CachePut(value = "shoes", key = "#shoesModel.id")
+    @Caching(evict = {
+            @CacheEvict(value = "shoes", allEntries = true)},
+            put = {
+                    @CachePut(value = "shoes", key = "#shoesModel.id")
+            })
     public ShoesModel createShoes(ShoesModel shoesModel) {
         LOGGER.info("Shoes add: {}", shoesModel);
         // this method check user exists
@@ -46,7 +51,11 @@ public class ShoesService {
         return shoesRepository.save(shoesModel);
     }
 
-    @CachePut(value = "shoes", key = "#updatedShoes.id")
+    @Caching(evict = {
+            @CacheEvict(value = "shoes", allEntries = true)},
+            put = {
+                    @CachePut(value = "shoes", key = "#updatedShoes.id")
+            })
     public ShoesModel updateShoes(Long id, ShoesModel updatedShoes) {
         LOGGER.info("Shoes update by id: id={}, updatedShoes={}", id, updatedShoes);
         // this method check user exists
@@ -59,7 +68,9 @@ public class ShoesService {
         }
     }
 
-    @CacheEvict(value = "shoes")
+    @Caching(evict = {
+            @CacheEvict(value = "shoes", allEntries = true),
+            @CacheEvict(value = "shoes", key = "#id")})
     public void deleteShoes(Long id) {
         LOGGER.info("Shoes delete by id: {}", id);
         if (shoesRepository.existsById(id)) {
@@ -69,8 +80,12 @@ public class ShoesService {
         }
     }
 
-    @Cacheable(value = "shoes", key = "#shoesModel.id")
-    public ShoesModel updateShoesModelMileage(ShoesModel shoesModel, int additionalKilometers){
+    @Caching(evict = {
+            @CacheEvict(value = "shoes", allEntries = true)},
+            put = {
+                    @CachePut(value = "shoes", key = "#updatedShoes.id")
+            })
+    public ShoesModel updateShoesModelMileage(ShoesModel shoesModel, int additionalKilometers) {
         int updatedMileage = shoesModel.getMileage() + additionalKilometers;
         shoesModel.setMileage(updatedMileage);
 

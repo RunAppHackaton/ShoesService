@@ -1,0 +1,531 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="d21c0a1e-3a51-4e44-aa03-5b53638003c6" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$/../RunApp_Android">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand />
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="HTML File" />
+        <option value="Enum" />
+        <option value="package-info" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Merge.Settings">
+    <option name="BRANCH" value="main" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../RunApp_Android" />
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="2cRnxvO6zxyuXGePTlyr80erAlm" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "DefaultHtmlFileTemplate": "HTML File",
+    "JUnit.AchievementRepositoryDiffblueTest.executor": "Run",
+    "JUnit.All in AchievementService.executor": "Run",
+    "JUnit.All in Api-Gateway.executor": "Run",
+    "JUnit.All in GuildService.executor": "Run",
+    "JUnit.All in ProfileService.executor": "Run",
+    "JUnit.All in ShoesService.executor": "Run",
+    "JUnit.All in WorkoutService.executor": "Run",
+    "JUnit.All in event-service.executor": "Run",
+    "JUnit.ApiGatewayApplicationTests.contextLoads.executor": "Run",
+    "JUnit.ShoesServiceCache.executor": "Run",
+    "JUnit.ShoesServiceCacheTest.executor": "Run",
+    "JUnit.ShoesServiceCacheTest.testGetShoesById_CacheHit.executor": "Run",
+    "JUnit.ShoesServiceCacheTest.testGetShoesById_RepositoryFirstThenCache.executor": "Run",
+    "JUnit.java in AchievementService.executor": "Run",
+    "JUnit.java in ShoesService.executor": "Run",
+    "JUnit.java in WorkoutService.executor": "Run",
+    "Maven.Api-Gateway [test].executor": "Run",
+    "Maven.ShoesService [package].executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.AchievementServiceApplication.executor": "Run",
+    "Spring Boot.ApiGatewayApplication.executor": "Run",
+    "Spring Boot.EventServiceApplication.executor": "Run",
+    "Spring Boot.GuildServiceApplication.executor": "Run",
+    "Spring Boot.ProfileServiceApplication.executor": "Run",
+    "Spring Boot.ShoesServiceApplication.executor": "Run",
+    "Spring Boot.StoryManagementServiceApplication.executor": "Run",
+    "Spring Boot.WorkoutServiceApplication.executor": "Run",
+    "git-widget-placeholder": "master",
+    "jdk.selected.JAVA_MODULE": "corretto-17",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/home/denpool/EnvFiles/spring-profile.env",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.0",
+    "run.configurations.included.in.services": "true",
+    "settings.editor.selected.configurable": "preferences.keymap",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.runapp.apigateway.utill" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/../RunApp_Android" />
+      <recent name="$PROJECT_DIR$/../AchievementService/.github/workflows" />
+      <recent name="$PROJECT_DIR$/../Api-Gateway/.github/workflows" />
+      <recent name="$PROJECT_DIR$/../EventService/.github/workflows" />
+      <recent name="$PROJECT_DIR$/../GuildService/.github/workflows" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.runapp.profileservice.service" />
+      <recent name="com.runapp.profileservice.controller" />
+      <recent name="com.runapp.profileservice.dto.request" />
+      <recent name="com.runapp.profileservice.dto.response" />
+      <recent name="com.runapp.profileservice.model" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.runapp.shoesservice.dto.response" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="MicronautRunConfigurationType" />
+        <option value="QuarkusRunConfigurationType" />
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+  </component>
+  <component name="RunManager" selected="JUnit.com.runapp.shoesservice in ShoesService">
+    <configuration name="All in ShoesService" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ShoesService" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ShoesServiceCacheTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ShoesService" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.runapp.shoesservice.CachingTest.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <extension name="net.ashald.envfile">
+        <option name="IS_ENABLED" value="true" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
+          <ENTRY IS_ENABLED="true" PARSER="env" IS_EXECUTABLE="false" PATH="$USER_HOME$/EnvFiles/run-app-json config/env_files/shoes-service.env" />
+          <ENTRY IS_ENABLED="true" PARSER="env" IS_EXECUTABLE="false" PATH="$USER_HOME$/EnvFiles/spring-profile.env" />
+        </ENTRIES>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.runapp.shoesservice.CachingTest" />
+      <option name="MAIN_CLASS_NAME" value="com.runapp.shoesservice.CachingTest.ShoesServiceCacheTest" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ShoesServiceCacheTest.testGetShoesById_CacheHit" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ShoesService" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.runapp.shoesservice.CachingTest.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.runapp.shoesservice.CachingTest" />
+      <option name="MAIN_CLASS_NAME" value="com.runapp.shoesservice.CachingTest.ShoesServiceCacheTest" />
+      <option name="METHOD_NAME" value="testGetShoesById_CacheHit" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ShoesServiceCacheTest.testGetShoesById_RepositoryFirstThenCache" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ShoesService" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.runapp.shoesservice.CachingTest.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.runapp.shoesservice.CachingTest" />
+      <option name="MAIN_CLASS_NAME" value="com.runapp.shoesservice.CachingTest.ShoesServiceCacheTest" />
+      <option name="METHOD_NAME" value="testGetShoesById_RepositoryFirstThenCache" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="com.runapp.shoesservice in ShoesService" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ShoesService" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.runapp.shoesservice.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.runapp.shoesservice" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AchievementServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="AchievementService" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.runapp.achievementservice.AchievementServiceApplication" />
+      <extension name="net.ashald.envfile">
+        <option name="IS_ENABLED" value="true" />
+        <option name="IS_SUBST" value="true" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="true" />
+        <option name="IS_IGNORE_MISSING_FILES" value="true" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="true" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
+          <ENTRY IS_ENABLED="false" PARSER="yaml" IS_EXECUTABLE="false" PATH="$USER_HOME$/EnvFiles/json config/achievement-service.json" />
+          <ENTRY IS_ENABLED="true" PARSER="env" IS_EXECUTABLE="false" PATH="$USER_HOME$/EnvFiles/spring-profile.env" />
+          <ENTRY IS_ENABLED="true" PARSER="env" IS_EXECUTABLE="false" PATH="$USER_HOME$/EnvFiles/run-app-json config/env_files/achievement-service.env" />
+        </ENTRIES>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ApiGatewayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="Api-Gateway" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.runapp.apigateway.ApiGatewayApplication" />
+      <extension name="net.ashald.envfile">
+        <option name="IS_ENABLED" value="true" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
+          <ENTRY IS_ENABLED="true" PARSER="yaml" IS_EXECUTABLE="false" PATH="$USER_HOME$/EnvFiles/run-app-json config/api-gateway.json" />
+        </ENTRIES>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EventServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="event-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.runapp.eventservice.EventServiceApplication" />
+      <extension name="net.ashald.envfile">
+        <option name="IS_ENABLED" value="true" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
+          <ENTRY IS_ENABLED="true" PARSER="env" IS_EXECUTABLE="false" PATH="$USER_HOME$/EnvFiles/run-app-json config/env_files/event-service.env" />
+          <ENTRY IS_ENABLED="true" PARSER="env" IS_EXECUTABLE="false" PATH="$USER_HOME$/EnvFiles/spring-profile.env" />
+        </ENTRIES>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GuildServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="GuildService" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.runapp.guildservice.GuildServiceApplication" />
+      <extension name="net.ashald.envfile">
+        <option name="IS_ENABLED" value="true" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
+          <ENTRY IS_ENABLED="true" PARSER="env" IS_EXECUTABLE="false" PATH="$USER_HOME$/EnvFiles/run-app-json config/env_files/guild-service.env" />
+          <ENTRY IS_ENABLED="true" PARSER="env" IS_EXECUTABLE="false" PATH="$USER_HOME$/EnvFiles/spring-profile.env" />
+        </ENTRIES>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ProfileServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="ProfileService" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.runapp.profileservice.ProfileServiceApplication" />
+      <extension name="net.ashald.envfile">
+        <option name="IS_ENABLED" value="true" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
+          <ENTRY IS_ENABLED="true" PARSER="env" IS_EXECUTABLE="false" PATH="$USER_HOME$/EnvFiles/env_files/profile-service.env" />
+          <ENTRY IS_ENABLED="true" PARSER="env" IS_EXECUTABLE="false" PATH="$USER_HOME$/EnvFiles/spring-profile.env" />
+        </ENTRIES>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ShoesServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="ShoesService" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.runapp.shoesservice.ShoesServiceApplication" />
+      <extension name="net.ashald.envfile">
+        <option name="IS_ENABLED" value="true" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
+          <ENTRY IS_ENABLED="true" PARSER="yaml" IS_EXECUTABLE="false" PATH="$USER_HOME$/EnvFiles/run-app-json config/shoes-service.json" />
+          <ENTRY IS_ENABLED="true" PARSER="env" IS_EXECUTABLE="false" PATH="$USER_HOME$/EnvFiles/spring-profile.env" />
+        </ENTRIES>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SocialServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="SocialService" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.runapp.socialservice.SocialServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="StorageServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="StorageService" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.runapp.storageservice.StorageServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="StoryManagementServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="StoryManagementService" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.runapp.storymanagementservice.StoryManagementServiceApplication" />
+      <extension name="net.ashald.envfile">
+        <option name="IS_ENABLED" value="true" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
+          <ENTRY IS_ENABLED="false" PARSER="yaml" IS_EXECUTABLE="false" PATH="$USER_HOME$/EnvFiles/run-app-json config/story-manager-service.json" />
+          <ENTRY IS_ENABLED="true" PARSER="env" IS_EXECUTABLE="false" PATH="$USER_HOME$/EnvFiles/spring-profile.env" />
+          <ENTRY IS_ENABLED="true" PARSER="env" IS_EXECUTABLE="false" PATH="$USER_HOME$/EnvFiles/run-app-json config/env_files/story-manager-service.env" />
+        </ENTRIES>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="StoryProgressServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="StoryProgressService" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.runapp.storyprogressservice.StoryProgressServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="WorkoutServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="WorkoutService" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.runapp.workoutservice.WorkoutServiceApplication" />
+      <extension name="net.ashald.envfile">
+        <option name="IS_ENABLED" value="true" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
+          <ENTRY IS_ENABLED="true" PARSER="env" IS_EXECUTABLE="false" PATH="$USER_HOME$/EnvFiles/run-app-json config/env_files/workout-service.env" />
+          <ENTRY IS_ENABLED="true" PARSER="env" IS_EXECUTABLE="false" PATH="$USER_HOME$/EnvFiles/spring-profile.env" />
+        </ENTRIES>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="JUnit.com.runapp.shoesservice in ShoesService" />
+      <item itemvalue="JUnit.All in ShoesService" />
+      <item itemvalue="JUnit.ShoesServiceCacheTest" />
+      <item itemvalue="JUnit.ShoesServiceCacheTest.testGetShoesById_CacheHit" />
+      <item itemvalue="JUnit.ShoesServiceCacheTest.testGetShoesById_RepositoryFirstThenCache" />
+      <item itemvalue="Spring Boot.AchievementServiceApplication" />
+      <item itemvalue="Spring Boot.ApiGatewayApplication" />
+      <item itemvalue="Spring Boot.EventServiceApplication" />
+      <item itemvalue="Spring Boot.GuildServiceApplication" />
+      <item itemvalue="Spring Boot.ProfileServiceApplication" />
+      <item itemvalue="Spring Boot.ShoesServiceApplication" />
+      <item itemvalue="Spring Boot.SocialServiceApplication" />
+      <item itemvalue="Spring Boot.StorageServiceApplication" />
+      <item itemvalue="Spring Boot.StoryManagementServiceApplication" />
+      <item itemvalue="Spring Boot.StoryProgressServiceApplication" />
+      <item itemvalue="Spring Boot.WorkoutServiceApplication" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.com.runapp.shoesservice in ShoesService" />
+        <item itemvalue="JUnit.ShoesServiceCacheTest" />
+        <item itemvalue="JUnit.ShoesServiceCacheTest.testGetShoesById_RepositoryFirstThenCache" />
+        <item itemvalue="JUnit.ShoesServiceCacheTest.testGetShoesById_CacheHit" />
+        <item itemvalue="JUnit.All in ShoesService" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-17.0.10-corretto-17.0.10-4caba194b151-25a4bffe" />
+        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-78a6f59c" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d21c0a1e-3a51-4e44-aa03-5b53638003c6" name="Changes" comment="" />
+      <created>1708083508105</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1708083508105</updated>
+      <workItem from="1708083509133" duration="5106000" />
+      <workItem from="1708089571358" duration="7340000" />
+      <workItem from="1708186565474" duration="8011000" />
+      <workItem from="1708338709048" duration="7520000" />
+      <workItem from="1708351887456" duration="674000" />
+      <workItem from="1708432395219" duration="3189000" />
+      <workItem from="1708443276223" duration="61000" />
+      <workItem from="1708443341523" duration="6580000" />
+      <workItem from="1708513848560" duration="2246000" />
+      <workItem from="1708516116703" duration="5430000" />
+      <workItem from="1708528085949" duration="648000" />
+      <workItem from="1708603215392" duration="5783000" />
+      <workItem from="1708690683377" duration="10835000" />
+      <workItem from="1708870462227" duration="1029000" />
+      <workItem from="1708945852417" duration="21197000" />
+      <workItem from="1709046076123" duration="9504000" />
+      <workItem from="1709121613980" duration="16260000" />
+      <workItem from="1709139162090" duration="1000" />
+      <workItem from="1709208949435" duration="18016000" />
+      <workItem from="1709296750317" duration="3002000" />
+      <workItem from="1709306994211" duration="13795000" />
+      <workItem from="1709659458496" duration="4698000" />
+      <workItem from="1710001517352" duration="4165000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="dependencySupport" implementationName="java:org.springframework.security:spring-security-core" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework:spring-core" />
+    <option featureType="dependencySupport" implementationName="java:jakarta.validation:jakarta.validation-api" />
+    <option featureType="dependencySupport" implementationName="java:com.google.protobuf:protobuf-java" />
+    <option featureType="dependencySupport" implementationName="java:io.projectreactor:reactor-core" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework.data:spring-data-commons" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework.cloud:spring-cloud-context" />
+    <option featureType="dependencySupport" implementationName="java:org.hibernate.validator:hibernate-validator" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework:spring-webmvc" />
+    <option featureType="dependencySupport" implementationName="java:org.projectlombok:lombok" />
+    <option featureType="dependencySupport" implementationName="java:jakarta.persistence:jakarta.persistence-api" />
+    <option featureType="dependencySupport" implementationName="java:io.grpc:grpc-api" />
+    <option featureType="dependencySupport" implementationName="java:org.thymeleaf:thymeleaf" />
+    <option featureType="dependencySupport" implementationName="java:jakarta.ws.rs:jakarta.ws.rs-api" />
+    <option featureType="dependencySupport" implementationName="java:org.springframework.boot:spring-boot" />
+    <option featureType="dependencySupport" implementationName="java:jakarta.xml.ws:jakarta.xml.ws-api" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/../ProfileService/src/main/java/com/runapp/profileservice/auditing/ApplicationAuditAware.java</url>
+          <line>24</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService" memberName="restOperations" />
+      </pinned-members>
+    </pin-to-top-manager>
+  </component>
+</project>

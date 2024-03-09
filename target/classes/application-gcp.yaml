@@ -1,5 +1,5 @@
 server:
-  port: ${SERVICE_SERVER_PORT}
+  port: ${SERVICE_SERVER_PORT:2222}
 
 management:
   tracing:

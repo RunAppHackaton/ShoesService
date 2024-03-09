@@ -1,1 +1,4 @@
-com\runapp\shoesservice\controller\ShoesControllerTest.class
+com/runapp/shoesservice/service/DefaultShoesServiceTest.class
+com/runapp/shoesservice/controller/DefaultShoesControllerTest.class
+com/runapp/shoesservice/service/ShoesServiceTest.class
+com/runapp/shoesservice/controller/ShoesControllerTest.class
